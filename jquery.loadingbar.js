@@ -20,16 +20,14 @@
         direction: "right",
         clickNamespace: "loadingbar",
         effect: true,
+        afterRender: function(data, target, el) {},
 
         /* Deafult Ajax Parameters  */
         async: true,
-        complete: function(xhr, text) {},
         cache: true,
-        error: function(xhr, text, e) {},
         global: true,
         headers: {},
         statusCode: {},
-        success: function(data, text, xhr) {},
         dataType: "html"
     };
 
@@ -56,13 +54,10 @@
                     type: type,
                     url: href,
                     async: settings.async,
-                    complete: settings.complete,
                     cache: settings.cache,
-                    error: settings.error,
                     global: settings.global,
                     headers: settings.headers,
                     statusCode: settings.statusCode,
-                    success: settings.success,
                     dataType: datatype,
                     beforeSend: function() {
                         if ($("#loadingbar").length === 0) {
@@ -136,6 +131,14 @@
                         }
                     }
 
+                    settings.afterRender(data, target, el);
+
+                }).fail(function(jqXHR, textStatus) {
+                    if (settings.fail) {
+                        settings.fail(jqXHR, textStatus);
+                    } else {
+                        alert('Request failed: ' + textStatus);
+                    }
                 });
                 return false;
             });
