@@ -12,12 +12,13 @@
  * ========================================================== */
 
 !function($){
-  
+
   var defaults = {
 		replaceURL: false,
 		target: "#loadingbar-frame",
 		direction: "right",
-		
+        clickNamespace: "loadingbar",
+
 		/* Deafult Ajax Parameters  */
 		async: true,
 		complete: function(xhr, text) {},
@@ -29,23 +30,24 @@
 		success: function(data, text, xhr) {},
 		dataType: "html"
 	};
-	
+
 	$.fx.step.textShadowBlur = function(fx) {
     $(fx.elem).prop('textShadowBlur', fx.now).css({textShadow: '0 0 ' + Math.floor(fx.now) + 'px black'});
   };
-  
-	
+
+
   $.fn.loadingbar = function(options){
     var settings = $.extend({}, defaults, options);
-      
+
     return this.each(function(index, element){
       var el = $(element),
         href = el.attr("href"),
         target = (el.data("target")) ? el.data("target") : settings.target,
         type = (el.data("type")) ? el.data("type") : settings.type,
         datatype = (el.data("datatype")) ? el.data("datatype") : settings.dataType;
+        clickNamespace = (el.data("namespace")) ? el.data("namespace") : settings.clickNamespace;
 
-      el.click(function (){
+      el.on('click.' + clickNamespace, function (){
         $.ajax({
           type: type,
           url: href,
@@ -62,8 +64,8 @@
             if ($("#loadingbar").length === 0) {
               $("body").append("<div id='loadingbar'></div>")
               $("#loadingbar").addClass("waiting").append($("<dt/><dd/>"));
-              
-              switch (settings.direction) { 
+
+              switch (settings.direction) {
                 case 'right':
                    $("#loadingbar").width((50 + Math.random() * 30) + "%");
                   break;
@@ -86,11 +88,11 @@
                    }, 200);
                   break;
               }
-             
+
             }
           }
         }).always(function() {
-          switch (settings.direction) { 
+          switch (settings.direction) {
             case 'right':
                $("#loadingbar").width("101%").delay(200).fadeOut(400, function() {
                    $(this).remove();
@@ -112,7 +114,7 @@
                  });
                break;
           }
-          
+
         }).done(function(data) {
           if ( history.replaceState && settings.replaceURL == true ) history.pushState( {}, document.title, href );
           if (settings.done) {
@@ -120,15 +122,15 @@
           } else {
             $(target).html(data)
           }
-          
+
         });
         return false
       });
-      
-      
+
+
     });
   }
-  
+
 }(window.jQuery);
 
 

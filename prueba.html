@@ -6,8 +6,8 @@
     <link rel="stylesheet" type="text/css" href="loadingbar.css"/>
 </head>
 <body>
-    <a class="ajax-call" data-target="#target1" href="http://localhost/loading-bar/prueba.php?param=1">items</a>
-    <a class="ajax-call" data-target="#target2" href="http://localhost/loading-bar/prueba.php?param=2">documentos</a>
+    <a class="ajax-call" data-target="#target1" data-namespace="ns1" href="http://localhost/loading-bar/prueba.php?param=1">items</a>
+    <a class="ajax-call" data-target="#target2" data-namespace="ns2" href="http://localhost/loading-bar/prueba.php?param=2">documentos</a>
 
     <h2>target1</h2>
 
@@ -21,7 +21,7 @@
     <script type="text/javascript" src="jquery.loadingbar.min.js"></script>
 
     <script>
-
+        $(".ajax-call").loadingbar({});
     </script>
 </body>
 </html>
