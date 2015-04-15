@@ -2,6 +2,14 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
+        jshint: {
+            options:{
+                globals: {
+                    jQuery: true
+                }
+            },
+            files: ['Gruntfile.js', 'jquery.loadingbar.js']
+        },
         jsbeautifier: {
             files: ["jquery.loadingbar.js"]
         },
@@ -11,14 +19,9 @@ module.exports = function (grunt) {
                 mangle: true,
                 report: 'gzip'
             },
-            dist: {
-                files: {
-                    'jquery.loadingbar.min.js': ['jquery.loadingbar.js']
-                }
+            files: {
+                'jquery.loadingbar.min.js': ['jquery.loadingbar.js']
             }
-        },
-        jshint: {
-            dist: ['Gruntfile.js', 'jquery.loadingbar.js']
         }
     });
 
@@ -27,7 +30,9 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.registerTask('default', [
-        'clean:default',
+        'jshint',
+        'jsbeautifier',
+        'uglify'
     ]);
 
 };
