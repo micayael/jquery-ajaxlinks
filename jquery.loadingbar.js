@@ -20,6 +20,7 @@
         direction: "right",
         clickNamespace: "loadingbar",
         effect: true,
+        removeAfterSuccess: false,
         afterRender: function(data, target, el) {},
 
         /* Deafult Ajax Parameters  */
@@ -46,8 +47,8 @@
                 href = el.attr("href"),
                 target = (el.data("target")) ? el.data("target") : settings.target,
                 type = (el.data("type")) ? el.data("type") : settings.type,
-                datatype = (el.data("datatype")) ? el.data("datatype") : settings.dataType;
-            clickNamespace = (el.data("namespace")) ? el.data("namespace") : settings.clickNamespace;
+                datatype = (el.data("datatype")) ? el.data("datatype") : settings.dataType,
+                clickNamespace = (el.data("namespace")) ? el.data("namespace") : settings.clickNamespace;
 
             el.on('click.' + clickNamespace, function() {
                 $.ajax({
@@ -129,6 +130,10 @@
                         if (settings.effect) {
                             $(target).hide().fadeIn();
                         }
+                    }
+
+                    if (settings.removeAfterSuccess) {
+                        el.off('click.' + clickNamespace);
                     }
 
                     settings.afterRender(data, target, el);
