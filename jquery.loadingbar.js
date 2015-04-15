@@ -19,6 +19,7 @@
         target: "#loadingbar-frame",
         direction: "right",
         clickNamespace: "loadingbar",
+        effect: true,
 
         /* Deafult Ajax Parameters  */
         async: true,
@@ -119,11 +120,20 @@
                     }
 
                 }).done(function(data) {
+
+                    if ($(target).length <= 0) {
+                        console.log('El resultado no puede mostrarse porque no existe un target: "' + target + '"');
+                    }
+
                     if (history.replaceState && settings.replaceURL === true) history.pushState({}, document.title, href);
                     if (settings.done) {
                         settings.done(data, target);
                     } else {
                         $(target).html(data);
+
+                        if (settings.effect) {
+                            $(target).hide().fadeIn();
+                        }
                     }
 
                 });
