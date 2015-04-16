@@ -50,7 +50,8 @@
                 datatype = (el.data("datatype")) ? el.data("datatype") : settings.dataType,
                 clickNamespace = (el.data("namespace")) ? el.data("namespace") : settings.clickNamespace;
 
-            el.on('click.' + clickNamespace, function() {
+            // Se elimina y agrega el evento para evitar duplicados.
+            el.off('click.' + clickNamespace).on('click.' + clickNamespace, function() {
                 $.ajax({
                     type: type,
                     url: href,

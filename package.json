@@ -1,6 +1,6 @@
 {
   "name": "micayael-loading-bar",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Add a Youtube-like loading bar to all your ajax links forked from: https://github.com/peachananr/loading-bar",
   "homepage": "https://github.com/micayael/loading-bar",
   "bugs": {
