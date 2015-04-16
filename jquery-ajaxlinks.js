@@ -1,5 +1,5 @@
 /* ===========================================================
- * jquery-loadingbar.js
+ * jquery-ajaxlinks.js
  * ===========================================================
  * fork de https://github.com/peachananr/loading-bar
  * Copyright 2013 Pete Rojwongsuriya.
@@ -18,7 +18,7 @@
         replaceURL: false,
         target: "#loadingbar-frame",
         direction: "right",
-        clickNamespace: "loadingbar",
+        clickNamespace: "ajaxlinks",
         effect: true,
         removeAfterSuccess: false,
         afterRender: function(data, target, el) {},
@@ -39,7 +39,7 @@
     };
 
 
-    $.fn.loadingbar = function(options) {
+    $.fn.ajaxlinks = function(options) {
         var settings = $.extend({}, defaults, options);
 
         return this.each(function(index, element) {
