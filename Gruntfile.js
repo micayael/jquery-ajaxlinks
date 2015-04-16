@@ -4,15 +4,19 @@ module.exports = function(grunt) {
 
         pkg: grunt.file.readJSON('package.json'),
 
+        clean: {
+
+            default: ['<%= pkg.name %>-<%= pkg.version %>.min.js', '<%= pkg.name %>-<%= pkg.version %>.min.css']
+        },
+        jsbeautifier: {
+            files: ['Gruntfile.js', '<%= pkg.name %>.js']
+        },
         jshint: {
             options: {
                 globals: {
                     jQuery: true
                 }
             },
-            files: ['Gruntfile.js', '<%= pkg.name %>.js']
-        },
-        jsbeautifier: {
             files: ['Gruntfile.js', '<%= pkg.name %>.js']
         },
         uglify: {
@@ -31,17 +35,33 @@ module.exports = function(grunt) {
                 src: '<%= pkg.name %>.js',
                 dest: '<%= pkg.name %>-<%= pkg.version %>.min.js'
             }
+        },
+        cssmin: {
+            options: {
+                rebase: false,
+                report: 'gzip',
+                keepSpecialComments: 1
+            },
+            minify: {
+                files: {
+                    '<%= pkg.name %>-<%= pkg.version %>.min.css': ['<%= pkg.name %>.css']
+                }
+            }
         }
     });
 
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-jsbeautifier");
-    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
     grunt.registerTask('default', [
+        'clean',
         'jsbeautifier',
         'jshint',
-        'uglify'
+        'uglify',
+        'cssmin'
     ]);
 
 };
