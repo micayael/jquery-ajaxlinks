@@ -10,10 +10,10 @@ module.exports = function(grunt) {
                     jQuery: true
                 }
             },
-            files: ['Gruntfile.js', 'jquery.loadingbar.js']
+            files: ['Gruntfile.js', '<%= pkg.name %>.js']
         },
         jsbeautifier: {
-            files: ['Gruntfile.js', 'jquery.loadingbar.js']
+            files: ['Gruntfile.js', '<%= pkg.name %>.js']
         },
         uglify: {
             options: {
@@ -28,8 +28,8 @@ module.exports = function(grunt) {
                 report: 'gzip'
             },
             dist: {
-                src: 'jquery.loadingbar.js',
-                dest: 'jquery.loadingbar-<%= pkg.version %>.min.js'
+                src: '<%= pkg.name %>.js',
+                dest: '<%= pkg.name %>-<%= pkg.version %>.min.js'
             }
         }
     });

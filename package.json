@@ -1,10 +1,10 @@
 {
-  "name": "micayael-loading-bar",
-  "version": "1.0.4",
-  "description": "Add a Youtube-like loading bar to all your ajax links forked from: https://github.com/peachananr/loading-bar",
-  "homepage": "https://github.com/micayael/loading-bar",
+  "name": "jquery-ajaxlinks",
+  "version": "1.0.5",
+  "description": "Add a simple way to bind ajax links forked from: https://github.com/peachananr/loading-bar",
+  "homepage": "https://github.com/micayael/jquery-ajaxlinks",
   "bugs": {
-    "url" : "https://github.com/micayael/loading-bar/issues",
+    "url" : "https://github.com/micayael/jquery-ajaxlinks/issues",
     "email" : "micayael@gmail.com"
   },
   "require": {
