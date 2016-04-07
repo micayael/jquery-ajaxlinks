@@ -130,6 +130,10 @@
 
                         if (settings.effect) {
                             $(target).hide().fadeIn();
+
+                            // El fadeIn() está dejando un display: block que causa problemas por lo que lo elimino
+                            // hasta saber que está pasando. Se ve en los tabs ajax de la librería ajaxTabs
+                            $(target).css('display', '');
                         }
                     }
 
