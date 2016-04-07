@@ -1,6 +1,6 @@
 {
   "name": "jquery-ajaxlinks",
-  "version": "1.0.8.1",
+  "version": "1.0.9",
   "description": "Add a simple way to bind ajax links forked from: https://github.com/peachananr/loading-bar",
   "homepage": "https://github.com/micayael/jquery-ajaxlinks",
   "bugs": {
